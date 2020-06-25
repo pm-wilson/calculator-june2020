@@ -1,3 +1,6 @@
+//import from utils
+import { add, subtract, multiply, divide } from "./utils.js";
+
 // get add dom elements
 // get add-input-1
 const addInput1 = document.getElementById("add-input-1");
@@ -26,16 +29,6 @@ const divideInput2 = document.getElementById("divide-input-2");
 const divideButton = document.getElementById("divide-button");
 const divideResult = document.getElementById("divide-result");
 
-// initialize state
-const calcHistory = document.getElementById("calc-history");
-
-const calcHistoryValues = {
-  addHistory: [],
-  subtractHistory: [],
-  multiplyHistory: [],
-  divideHistory: [],
-};
-
 // set the event handler to the button
 boogerButton.addEventListener("click", () => {
   // in the click event handler . . .
@@ -46,51 +39,35 @@ boogerButton.addEventListener("click", () => {
   const value2 = addInput2.value;
 
   // add the two values together
-  const sum = Number(value1) + Number(value2);
+  const sum = add(value1, value2);
 
   // update the textContent of the span
   boogerSpan.textContent = sum;
-
-  //update history
-  calcHistoryValues.addHistory.push([Number(value1), Number(value2)]);
-  console.log(calcHistoryValues);
 });
 
 subtractButton.addEventListener("click", () => {
   const subtractValue1 = subtractInput1.value;
   const subtractValue2 = subtractInput2.value;
 
-  const product = Number(subtractValue1) - Number(subtractValue2);
+  const result = subtract(subtractValue1, subtractValue2);
 
-  subtractResult.textContent = product;
-
-  calcHistoryValues.subtractHistory.push([
-    Number(subtractValue1),
-    Number(subtractValue2),
-  ]);
-  console.log(calcHistoryValues);
+  subtractResult.textContent = result;
 });
 
 multiplyButton.addEventListener("click", () => {
   const multiplyValue1 = multiplyInput1.value;
   const multiplyValue2 = multiplyInput2.value;
 
-  calcHistoryValues.multiplyHistory.push([
-    Number(multiplyValue1),
-    Number(multiplyValue2),
-  ]);
-  multiplyResult.textContent = Number(multiplyValue1) * Number(multiplyValue2);
-  console.log(calcHistoryValues);
+  const result = multiply(multiplyValue1, multiplyValue2);
+
+  multiplyResult.textContent = result;
 });
 
 divideButton.addEventListener("click", () => {
   const divideValue1 = divideInput1.value;
   const divideValue2 = divideInput2.value;
 
-  calcHistoryValues.divideHistory.push([
-    Number(divideValue1),
-    Number(divideValue2),
-  ]);
-  divideResult.textContent = Number(divideValue1) / Number(divideValue2);
-  console.log(calcHistoryValues);
+  const result = divide(divideValue1, divideValue2);
+
+  divideResult.textContent = result;
 });
